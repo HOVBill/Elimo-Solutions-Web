@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --primary: 31, 3, 61; /* #1F033D */
+  --secondary: 171, 1, 222; /* #AB01DE */
+  --accent: 13, 141, 230; /* #0D8DE6 */
+  --background: 10, 10, 10; /* dark industrial background fallback */
+  --foreground: 255, 255, 255;
+}
+
+/* Apply glassmorphic styling globally */
+body {
+  color: rgb(var(--foreground));
+  font-family: 'Inter', sans-serif;
+}
+
+.bg-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+}
+
+input, textarea {
+  color: #fff;               /* text color */
+  background-color: transparent; /* optional if you want to rely on Tailwind bg classes */
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}

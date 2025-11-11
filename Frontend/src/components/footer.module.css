@@ -1,0 +1,32 @@
+/* footer.module.css */
+.footerWrapper {
+  padding: 2.5rem 0; /* Tailwind py-10 */
+  margin-top: 5rem;  /* Tailwind mt-20 */
+  background-color: rgba(0, 0, 0, 0.4); /* Tailwind bg-black/40 */
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  text-align: center;
+}
+
+.footerSectionTitle {
+  font-weight: 600;
+  margin-bottom: 1rem; /* Tailwind mb-4 */
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s;
+}
+
+.footerLink:hover {
+  color: white;
+}
+
+.copyright {
+  margin-top: 1.5rem; /* Tailwind mt-6 */
+  font-size: 0.875rem; /* Tailwind text-sm */
+  color: rgba(255, 255, 255, 0.5);
+}
+
