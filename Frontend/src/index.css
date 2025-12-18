@@ -2,35 +2,113 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
-  --primary: 31, 3, 61; /* #1F033D */
+  --primary: 31, 3, 61;     /* #1F033D */
   --secondary: 171, 1, 222; /* #AB01DE */
-  --accent: 13, 141, 230; /* #0D8DE6 */
-  --background: 10, 10, 10; /* dark industrial background fallback */
+  --accent: 13, 141, 230;   /* #0D8DE6 */
+  --background: 10, 10, 10;
   --foreground: 255, 255, 255;
 }
 
-/* Apply glassmorphic styling globally */
+/* ===========================
+   BASE
+=========================== */
+
 body {
+  background-color: rgb(var(--background));
   color: rgb(var(--foreground));
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
+
+/* ===========================
+   SAFE GLASS UTILITY
+   (CONTENT ONLY – NEVER HEADERS)
+=========================== */
 
 .bg-glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  z-index: 4;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.14),
+    rgba(255,255,255,0.06)
+  );
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.22);
   border-radius: 1rem;
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 
-input, textarea {
-  color: #fff;               /* text color */
-  background-color: transparent; /* optional if you want to rely on Tailwind bg classes */
+/* ===========================
+   TEXT LAYER (ALWAYS ABOVE GLASS)
+=========================== */
+
+.text-layer {
+  position: relative;
+  z-index: 10;
+}
+
+/* Headings are ALWAYS above glass */
+h1, h2, h3 {
+  position: relative;
+  z-index: 10;
+}
+
+/* ===========================
+   BACKGROUND GLOW (BOTTOM)
+=========================== */
+
+.bg-glow {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+input,
+textarea {
+  color: #fff;
+  background-color: transparent;
 }
 
 input::placeholder,
 textarea::placeholder {
   color: rgba(255, 255, 255, 0.7);
+}
+
+/* =====================================================
+   ELIMO SAFE GRADIENT TEXT (GLOBAL)
+===================================================== */
+.elimo-gradient-text {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+
+  /* Fallback color */
+  color: var(--accent);
+
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--secondary)
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  /* IMPORTANT: NO -webkit-text-fill-color */
+  /* IMPORTANT: NO text-shadow */
+
+  filter: drop-shadow(0 4px 10px rgba(13,141,230,0.3));
 }

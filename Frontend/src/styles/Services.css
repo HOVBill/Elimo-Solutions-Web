@@ -1,0 +1,245 @@
+/* =========================================================
+   ELIMO BRAND COLORS — BOOSTED
+========================================================= */
+:root {
+  --primary: #1F033D;
+  --secondary: #AB01DE;
+  --accent: #0D8DE6;
+
+  --text-main: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.78);
+
+  --glass: rgba(255, 255, 255, 0.12);
+  --glass-strong: rgba(255, 255, 255, 0.18);
+  --border: rgba(255, 255, 255, 0.22);
+}
+
+/* =========================================================
+   PAGE WRAPPER — ELIMO BACKGROUND
+========================================================= */
+.services-wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+  padding: 8rem 2rem 6rem;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 12% 12%, rgba(13,141,230,0.18), transparent 42%),
+    radial-gradient(circle at 88% 82%, rgba(171,1,222,0.22), transparent 45%),
+    linear-gradient(160deg, #0b0b14, #000000);
+
+  color: var(--text-main);
+}
+
+/* =========================================================
+   GLOW ORBS — STRONG PRESENCE
+========================================================= */
+.parallax-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(150px);
+}
+
+.orb-1 {
+  width: 520px;
+  height: 520px;
+  top: -15%;
+  left: -15%;
+  background: radial-gradient(circle, var(--accent), transparent 65%);
+  opacity: 0.35;
+}
+
+.orb-2 {
+  width: 460px;
+  height: 460px;
+  bottom: -18%;
+  right: -15%;
+  background: radial-gradient(circle, var(--secondary), transparent 65%);
+  opacity: 0.32;
+}
+
+.orb-3 {
+  width: 360px;
+  height: 360px;
+  top: 40%;
+  right: -18%;
+  background: radial-gradient(circle, var(--accent), transparent 65%);
+  opacity: 0.22;
+}
+
+/* =========================================================
+   OCTAGON SHAPES — DECORATIVE ONLY
+========================================================= */
+.octagon {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  clip-path: polygon(
+    30% 0%, 70% 0%,
+    100% 30%, 100% 70%,
+    70% 100%, 30% 100%,
+    0% 70%, 0% 30%
+  );
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.25;
+}
+
+.octagon-lg { width: 220px; height: 220px; top: 20%; left: 5%; }
+.octagon-md { width: 160px; height: 160px; bottom: 22%; left: 15%; }
+.octagon-sm { width: 180px; height: 180px; top: 55%; right: 8%; }
+
+/* =========================================================
+   HEADER — HIGH IMPACT
+========================================================= */
+.services-header {
+  position: relative;
+  z-index: 30;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 4.5rem;
+}
+
+.services-title {
+  position: relative;
+  z-index: 30;
+
+  display: inline-block;
+  isolation: isolate;
+
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+
+  /* Fallback color (CRITICAL) */
+  color: var(--accent);
+
+  /* Gradient text */
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--secondary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  /* IMPORTANT: DO NOT USE -webkit-text-fill-color */
+  /* -webkit-text-fill-color: transparent; ❌ REMOVE */
+
+  /* Sharp glow */
+  filter: drop-shadow(0 4px 12px rgba(13,141,230,0.35));
+}
+
+
+.services-subtitle {
+  font-size: 1.18rem;
+  margin-top: 1.4rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* =========================================================
+   SERVICES GRID
+========================================================= */
+.services-grid {
+  position: relative;
+  z-index: 15;
+  display: grid;
+  gap: 2.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   SERVICE CARD — PREMIUM GLASS
+========================================================= */
+.service-card {
+  position: relative;
+  z-index: 10;
+
+  background: linear-gradient(
+    180deg,
+    var(--glass-strong),
+    var(--glass)
+  );
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 2.6rem 1.6rem;
+
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.35s ease;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.service-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: var(--accent);
+  box-shadow:
+    0 26px 60px rgba(0,0,0,0.6),
+    0 0 40px rgba(13,141,230,0.35);
+}
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+.service-card-icon {
+  font-size: 2.6rem;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  filter: drop-shadow(0 0 12px rgba(13,141,230,0.4));
+}
+
+.service-card-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+
+  /* ✅ fallback color (CRITICAL) */
+  color: var(--accent);
+
+  /* gradient text */
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--secondary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  /* ❌ DO NOT set color: transparent */
+}
+
+
+.service-card-description {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+  .services-wrapper {
+    padding: 6rem 1.2rem 4rem;
+  }
+
+  .services-header {
+    margin-bottom: 3.5rem;
+  }
+}

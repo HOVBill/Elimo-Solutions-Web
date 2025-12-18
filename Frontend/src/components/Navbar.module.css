@@ -1,33 +1,217 @@
-/* navbar.module.css */
-.navButton {
-  position: relative;
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  font-weight: 500;
-  color: white;
-  background: linear-gradient(90deg, #ab01de, #0d8de6);
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 2px 6px rgba(171, 1, 222, 0.3), 0 2px 12px rgba(13, 141, 230, 0.3);
+/* ===================================================
+   BRAND COLORS
+=================================================== */
+:root {
+  --primary: #1F033D;
+  --secondary: #AB01DE;
+  --accent: #0D8DE6;
+  --white: #ffffff;
 }
 
-.navButton::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 9999px;
-  background: linear-gradient(90deg, #ab01de, #0d8de6);
-  filter: blur(10px);
-  opacity: 0.25;
-  animation: pulseGlow 2.5s ease-in-out infinite;
-  z-index: -1;
+/* ===================================================
+   NAVBAR BASE + SCROLL SHADOW
+=================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navScrolled {
+  background: rgba(0, 0, 0, 0.92);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* ===================================================
+   LOGO IMAGE
+=================================================== */
+.logoImage {
+  width: 58px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0px 0px 4px rgba(13, 141, 230, 0.4));
+}
+
+/* Brand text next to logo */
+.brandName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white !important;
+}
+
+
+/* ===================================================
+   NAV BUTTONS
+=================================================== */
+.navButton {
+  color: var(--white);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s ease;
 }
 
 .navButton:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(171, 1, 222, 0.5), 0 0 30px rgba(13, 141, 230, 0.5);
+  color: var(--accent);
+  transform: translateY(-2px);
 }
 
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.5; }
+/* underline animation */
+.navButton::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, var(--secondary), var(--accent));
+  transition: width 0.3s ease;
+}
+
+.navButton:hover::after {
+  width: 100%;
+}
+
+/* active page highlight */
+.active {
+  color: var(--accent) !important;
+}
+.active::after {
+  width: 100%;
+}
+
+/* ===================================================
+   ABOUT PILL BUTTON (NEW)
+=================================================== */
+.aboutPill {
+  padding: 8px 16px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, var(--secondary), var(--accent));
+  color: var(--white) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(171, 1, 222, 0.45);
+  transition: 0.3s ease;
+  border: none;
+}
+
+.aboutPill:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 15px rgba(13, 141, 230, 0.65);
+}
+
+/* About icon */
+.aboutIcon {
+  font-size: 0.9rem;
+  filter: drop-shadow(0 0 3px rgba(255,255,255,0.25));
+}
+
+/* ===================================================
+   ABOUT DROPDOWN (CLEAN + MERGED)
+=================================================== */
+.dropdownWrapper {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: rgba(10, 10, 10, 0.88);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(171, 1, 222, 0.35);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+  backdrop-filter: blur(12px);
+  transform-origin: top;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.96);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.dropdownOpen {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 160px;
+}
+
+.dropdownItem {
+  padding: 10px 14px;
+  color: var(--white);
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+.dropdownItem:hover {
+  background: rgba(171, 1, 222, 0.22);
+  color: var(--accent);
+  transform: translateX(6px);
+  box-shadow: 0 2px 8px rgba(13, 141, 230, 0.25);
+}
+
+/* ===================================================
+   ARROW ROTATION
+=================================================== */
+.arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  font-size: 0.8rem;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+/* ===================================================
+   SEARCH BAR
+=================================================== */
+.searchInput {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  color: var(--white);
+  width: 180px;
+  transition: 0.3s ease;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.searchInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* ===================================================
+   CTA BUTTON
+=================================================== */
+.ctaButton {
+  padding: 10px 18px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  border-radius: 8px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: scale(1.05);
+  filter: brightness(1.12);
 }

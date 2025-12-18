@@ -1,0 +1,261 @@
+/* =========================================================
+   ELIMO BRAND COLORS
+========================================================= */
+:root {
+  --primary: #1F033D;
+  --secondary: #AB01DE;
+  --accent: #0D8DE6;
+  --light: #F5F5F5;
+  --dark-bg: #0A0A0A;
+  --light-bg: #F9F9F9;
+}
+
+/* =========================================================
+   MAIN WRAPPER WITH THEME SUPPORT
+========================================================= */
+.contact-wrapper {
+  min-height: 100vh;
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.contact-wrapper.dark {
+  background: radial-gradient(circle at top, #1F033D, #0A0A0A);
+  color: var(--light);
+}
+
+.contact-wrapper.light {
+  background: radial-gradient(circle at top, #ffffff, #ececec);
+  color: var(--primary);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: 0.3s ease;
+}
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+.contact-title {
+  position: relative;
+  z-index: 20;
+
+  display: inline-block;        /* forces paint layer */
+  isolation: isolate;           /* prevents backdrop bleed */
+
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+
+  /* fallback color (CRITICAL) */
+  color: var(--accent);
+
+  /* gradient text */
+  background: linear-gradient(
+    to right,
+    var(--accent),
+    var(--secondary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  /* ❌ DO NOT USE webkit-text-fill-color */
+  /* -webkit-text-fill-color: transparent; */
+
+  /* sharp glow (no blur) */
+  filter: drop-shadow(0 3px 8px rgba(13,141,230,0.35));
+}
+
+
+/* =========================================================
+   3D FLOATING CARD
+========================================================= */
+.contact-card {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(31, 3, 61, 0.55);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 25px rgba(171, 1, 222, 0.25);
+  
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease;
+}
+
+/* 3D tilt movement */
+.contact-card:hover {
+  transform: perspective(800px) rotateX(8deg) rotateY(-8deg);
+}
+
+/* SUCCESS GLOW */
+.success-glow {
+  animation: glowSuccess 1.2s ease;
+}
+@keyframes glowSuccess {
+  0% { box-shadow: 0 0 0px var(--accent); }
+  50% { box-shadow: 0 0 35px var(--accent); }
+  100% { box-shadow: 0 0 0px var(--accent); }
+}
+
+/* ERROR SHAKE */
+.shake {
+  animation: shakeAnim 0.5s ease;
+}
+@keyframes shakeAnim {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+/* =========================================================
+   INPUT GROUP WITH ICONS
+========================================================= */
+.input-icon-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-icon-group .icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.8;
+  font-size: 1.1rem;
+}
+
+.contact-input {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  padding: 0.85rem 1rem 0.85rem 3rem;
+
+  background: rgba(31,3,61,0.75);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px;
+  color: white;
+
+  overflow: hidden;
+  box-sizing: border-box; /* <--- critical */
+}
+
+
+.contact-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.contact-card {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+.contact-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(to right, var(--accent), var(--secondary));
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.contact-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* =========================================================
+   STATUS TEXT
+========================================================= */
+.status {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.status.success {
+  color: #4ade80;
+}
+.status.error {
+  color: #f87171;
+}
+
+/* =========================================================
+   CONTACT DETAILS WITH ICONS
+========================================================= */
+.contact-icons {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 1rem;
+}
+.contact-icons div {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* =========================================================
+   FOOTER NOTE
+========================================================= */
+.contact-footer {
+  margin-top: 1.5rem;
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+/* Universal fix */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Card boundary */
+.contact-card {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* Input fix */
+.contact-input {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  padding: 0.85rem 1rem 0.85rem 3rem;
+
+  background: rgba(31,3,61,0.75);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px;
+  color: white;
+
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0; /* prevents unexpected shift */
+}

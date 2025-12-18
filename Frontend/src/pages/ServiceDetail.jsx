@@ -1,46 +1,160 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import "../styles/ServiceDetail.css";
 
 const serviceDetails = {
   "web-development": {
     title: "Web Development",
-    description: "High-quality web solutions for enterprise efficiency.",
+    description:
+      "Modern, scalable, and secure web platforms engineered for enterprise performance and seamless user experience.",
     features: [
-        <><strong>Custom Responsive Designs</strong> – Sleek, mobile-friendly websites tailored to your brand</>,
-        <><strong>E-Commerce Integration</strong> – Seamless online store setup with secure payment gateways</>,
-        <><strong>CMS Development</strong> – Flexible WordPress or Headless CMS solutions for easy content management</>,
-        <><strong>Performance Optimization</strong> – Fast, efficient websites optimized for speed and user experience</>,
+      <>
+        <strong>Custom Responsive Designs</strong> – Tailored UI/UX optimized
+        for all devices.
+      </>,
+      <>
+        <strong>E-Commerce Integration</strong> – Secure, scalable online shops
+        with seamless checkout flows.
+      </>,
+      <>
+        <strong>CMS Development</strong> – WordPress, Headless CMS, and custom
+        admin dashboards.
+      </>,
+      <>
+        <strong>Performance Optimization</strong> – Lightning-fast load speeds
+        and SEO-ready architecture.
+      </>,
     ],
   },
+
   "ai-automation": {
     title: "AI & Automation",
-    description: "Streamline operations with intelligent automation.",
+    description:
+      "AI-driven automation that increases efficiency, reduces manual workload, and enhances decision-making.",
     features: [
-        <><strong>Robotic Process Automation (RPA)</strong> – Automate repetitive tasks for efficiency and accuracy</>,
-        <><strong>AI-Driven Data Analytics</strong> – Turn data into actionable insights with advanced AI tools.</>,
-        <><strong>Workflow Automation</strong> – Streamline business processes for faster operations.</>,
-        <><strong>Machine Learning Solutions</strong> – Implement predictive models to enhance decision-making</>,
+      <>
+        <strong>Robotic Process Automation (RPA)</strong> – Eliminate repetitive
+        manual tasks.
+      </>,
+      <>
+        <strong>AI Analytics</strong> – Extract intelligent insights from your
+        data.
+      </>,
+      <>
+        <strong>Workflow Automation</strong> – Faster, optimized business
+        processes.
+      </>,
+      <>
+        <strong>Machine Learning Models</strong> – Predictive intelligence for
+        smarter decisions.
+      </>,
     ],
   },
+
   "cloud-solutions": {
     title: "Cloud Solutions",
-    description: "Secure and scalable cloud infrastructure for your business.",
+    description:
+      "Secure, resilient, and scalable cloud architecture designed for modern enterprises.",
     features: [
-        <><strong>Cloud Migration</strong> – Seamlessly move your systems to the cloud with minimal downtime</>,
-        <><strong>Serverless Architecture</strong> – Build scalable, cost-efficient applications without managing servers</>,
-        <><strong>Managed Cloud Hosting</strong> – Reliable, fully managed hosting for your cloud workloads</>,
-        <><strong>Backup & Disaster Recovery</strong> – Protect your data and ensure business continuity</>,
+      <>
+        <strong>Cloud Migration</strong> – Zero-downtime migration strategies.
+      </>,
+      <>
+        <strong>Serverless Architecture</strong> – Scalable, cost-efficient
+        backend systems.
+      </>,
+      <>
+        <strong>Managed Cloud Hosting</strong> – 24/7 monitoring and maintenance.
+      </>,
+      <>
+        <strong>Backup & Disaster Recovery</strong> – Ensure business continuity.
+      </>,
     ],
   },
+
   "it-consulting": {
     title: "IT Consulting",
-    description: "Expert advice to optimize your enterprise technology stack.",
+    description:
+      "Strategic consulting that aligns your technology roadmap with business growth.",
     features: [
-        <><strong>IT Strategy & Roadmap</strong> – Align technology with your business goals for growth and efficiency</>,
-        <><strong>Infrastructure Audits</strong> – Assess and optimize your IT systems for performance and reliability</>,
-        <><strong>Cybersecurity Consulting</strong> – Protect your assets with proactive security measures</>,
-        <><strong>Cost Optimization</strong> – Reduce IT expenses while maximizing value and efficiency</>,
+      <>
+        <strong>IT Strategy & Roadmaps</strong> – Plan for the future of your
+        business.
+      </>,
+      <>
+        <strong>Infrastructure Audits</strong> – Improve reliability and uptime.
+      </>,
+      <>
+        <strong>Cybersecurity Consulting</strong> – Protect critical systems.
+      </>,
+      <>
+        <strong>Cost Optimization</strong> – Reduce tech spend while improving
+        output.
+      </>,
+    ],
+  },
+
+  "infrastructure": {
+    title: "Infrastructure Services",
+    description:
+      "Robust enterprise-grade infrastructure that supports performance at scale.",
+    features: [
+      <>
+        <strong>Networking & Servers</strong> – High-availability architecture.
+      </>,
+      <>
+        <strong>Virtualization</strong> – Efficient, scalable resource usage.
+      </>,
+      <>
+        <strong>Hardware Deployment</strong> – Enterprise routers, switches, and
+        storage.
+      </>,
+      <>
+        <strong>System Monitoring</strong> – Real-time performance analytics.
+      </>,
+    ],
+  },
+
+  "erp-solutions": {
+    title: "Enterprise Resource Planning",
+    description:
+      "Centralized ERP systems that unify operations, finance, HR, logistics, and analytics.",
+    features: [
+      <>
+        <strong>Custom ERP Deployment</strong> – Tailored modules for your
+        workflow.
+      </>,
+      <>
+        <strong>Process Integration</strong> – Sync all departments seamlessly.
+      </>,
+      <>
+        <strong>Reporting Dashboards</strong> – Real-time insights.
+      </>,
+      <>
+        <strong>Automation within ERP</strong> – Reduce manual entry.
+      </>,
+    ],
+  },
+
+  "business-data-analysis": {
+    title: "Business & Data Analysis",
+    description:
+      "Data-driven decision-making powered by advanced analytics and reporting.",
+    features: [
+      <>
+        <strong>Data Warehousing</strong> – Unified, structured storage.
+      </>,
+      <>
+        <strong>BI Dashboards</strong> – Real-time KPI tracking.
+      </>,
+      <>
+        <strong>Predictive Analytics</strong> – Better forecasting.
+      </>,
+      <>
+        <strong>Process Insights</strong> – Identify inefficiencies and
+        opportunities.
+      </>,
     ],
   },
 };
@@ -49,110 +163,74 @@ export default function ServiceDetail() {
   const { id } = useParams();
   const service = serviceDetails[id];
 
-  // Track mouse position
+  // Parallax mouse tracking
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [windowSize, setWindowSize] = useState({ width: 1, height: 1 });
 
   useEffect(() => {
-    const handleResize = () => {
+    const resize = () =>
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
 
     const handleMouseMove = (e) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
+
+    resize();
+    window.addEventListener("resize", resize);
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
+      window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", handleResize);
     };
-  }, [mouseX, mouseY]);
+  }, []);
 
-  const translateX = useTransform(
-    mouseX,
-    [0, windowSize.width || 1],
-    ["-60%", "-45%"]
-  );
-  const translateY = useTransform(
-    mouseY,
-    [0, windowSize.height || 1],
-    ["-60%", "-45%"]
-  );
+  const translateX = useTransform(mouseX, [0, windowSize.width], ["-55%", "-40%"]);
+  const translateY = useTransform(mouseY, [0, windowSize.height], ["-55%", "-40%"]);
 
   if (!service) {
     return (
-      <div className="text-center py-32 text-white bg-black min-h-screen">
-        <h1 className="text-3xl mb-4">Service Not Found</h1>
-        <Link to="/services" className="text-accent underline">
-          Back to Services
-        </Link>
+      <div className="service-not-found">
+        <h1>Service Not Found</h1>
+        <Link to="/services">Back to Services</Link>
       </div>
     );
   }
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-black via-[#0a0a1a] to-gray-900 text-white pt-32 pb-20 px-6 sm:px-10 md:px-20 overflow-hidden">
-      {/* Moving Glow Orb */}
+    <div className="service-detail-wrapper">
+
+      {/* PARALLAX ORB */}
       <motion.div
-        className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-[#0D8DE6] to-[#AB01DE] blur-[160px] opacity-30 pointer-events-none"
+        className="detail-orb"
         style={{ x: translateX, y: translateY }}
-        animate={{ opacity: [0.25, 0.4, 0.25], scale: [1, 1.05, 1] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.25, 0.45, 0.25], scale: [1, 1.05, 1] }}
+        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
       />
 
-      {/* Content Card */}
+      {/* CONTENT CARD */}
       <motion.div
-        className="relative z-10 max-w-4xl mx-auto bg-white/10 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-2xl"
+        className="detail-card"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Glowing Title */}
-        <div className="relative mb-12 text-center">
-          <motion.h1
-            className="text-5xl sm:text-6xl font-extrabold bg-gradient-to-r from-[#0D8DE6] to-[#AB01DE] bg-clip-text text-transparent drop-shadow-lg"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {service.title}
-          </motion.h1>
+        <h1 className="detail-title">{service.title}</h1>
 
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-8 bg-gradient-to-r from-[#0D8DE6]/40 to-[#AB01DE]/40 blur-3xl rounded-full"
-            animate={{ opacity: [0.2, 0.5, 0.2] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        </div>
+        <p className="detail-description">{service.description}</p>
 
-        {/* Description */}
-        <p className="text-gray-200 text-lg mb-10 text-center">
-          {service.description}
-        </p>
+        <h2 className="feature-heading">Key Features</h2>
 
-        {/* Features */}
-        <h2 className="text-2xl font-semibold mb-4 text-white text-center">
-          Key Features
-        </h2>
-        <ul className="list-disc list-inside text-gray-300 mb-10 space-y-16 max-w-md mx-auto text-center sm:text-left">
-          {service.features.map((feature, i) => (
-            <li key={i}>{feature}</li>
+        <ul className="feature-list">
+          {service.features.map((f, idx) => (
+            <li key={idx}>{f}</li>
           ))}
         </ul>
 
-        {/* Back Button */}
-        <div className="text-center">
-          <Link
-            to="/services"
-            className="inline-block bg-[#0D8DE6] text-white px-6 py-3 rounded-lg hover:bg-[#0D8DE6]/80 transition"
-          >
-            ← Back to Services
-          </Link>
+        <div className="detail-back">
+          <Link to="/services">← Back to Services</Link>
         </div>
       </motion.div>
     </div>

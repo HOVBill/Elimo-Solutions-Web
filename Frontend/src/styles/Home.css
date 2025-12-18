@@ -1,0 +1,212 @@
+/* ============================================
+   ELIMO BRAND COLORS
+============================================ */
+
+:root {
+  --primary: #1F033D;
+  --secondary: #AB01DE;
+  --accent: #0D8DE6;
+  --white: #ffffff;
+}
+
+/* ============================================
+   HERO SECTION
+============================================ */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  color: white;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.hero-heading {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+}
+
+.hero-subtext {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+/* ============================================
+   UNIVERSAL SECTION STYLE
+============================================ */
+.section {
+  padding: 6rem 1.5rem;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.section-overlay-light {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.section-overlay-dark {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.section-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.section-subtext {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+/* ============================================
+   MISSION / VISION CARDS
+============================================ */
+.info-card {
+  background: rgba(0, 0, 0, 0.32);
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: var(--white);
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 14px rgba(171, 1, 222, 0.35);
+}
+
+/* ============================================
+   WHY CHOOSE US CARDS
+============================================ */
+.feature-card {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* ============================================
+   SERVICES CARDS
+============================================ */
+.service-card {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  width: 260px;
+  height: 420px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 16px rgba(13, 141, 230, 0.4);
+}
+
+.service-image-wrapper {
+  width: 128px;
+  height: 128px;
+  margin: auto;
+}
+
+.service-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ============================================
+   CONTACT CARDS SECTION
+============================================ */
+.contact-card {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.20);
+}
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  justify-items: center; /* centers each card */
+  gap: 1.8rem;
+  width: 100%;
+  max-width: 900px; /* ensures the block stays centered */
+  margin: 0 auto; /* keeps it centered on the page */
+}
+
+
+/* CONTACT BUTTON */
+.contactButton {
+  padding: 12px 24px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  color: var(--white);
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+
+.contactButton:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+============================================ */
+.fade-in-up {
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,5 +1,6 @@
 // src/pages/MediaPage.jsx
 import React, { useState } from "react";
+import "../styles/Media.css";
 
 export default function MediaPage() {
   const mediaImages = [
@@ -15,24 +16,26 @@ export default function MediaPage() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
-    <div className="min-h-screen bg-black text-white px-6 py-16">
-      <h1 className="text-4xl font-bold mb-8 text-center">Company Media</h1>
-      <p className="text-center mb-12 text-lg max-w-2xl mx-auto">
+    <div className="media-wrapper">
+
+      {/* Title */}
+      <h1 className="media-title">Company Media</h1>
+      <p className="media-subtitle">
         Explore highlights and moments from Elimo Solutions.
       </p>
 
-      {/* Image Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+      {/* Masonry Image Grid */}
+      <div className="media-grid">
         {mediaImages.map((src, index) => (
           <div
             key={index}
-            className="overflow-hidden rounded-lg shadow-lg border border-gray-700 cursor-pointer"
+            className="media-card"
             onClick={() => setSelectedImage(src)}
           >
             <img
               src={src}
               alt={`Media ${index + 1}`}
-              className="w-full h-32 sm:h-40 object-cover transition-transform duration-300 hover:scale-105"
+              className="media-image"
             />
           </div>
         ))}
@@ -40,20 +43,14 @@ export default function MediaPage() {
 
       {/* Lightbox Modal */}
       {selectedImage && (
-        <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-3xl w-full p-4">
-            <img
-              src={selectedImage}
-              alt="Selected media"
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
-            {/* Close Button */}
+        <div className="media-lightbox" onClick={() => setSelectedImage(null)}>
+          <div className="media-lightbox-content">
+            <img src={selectedImage} alt="Selected" className="media-lightbox-img" />
+
+            {/* Close button */}
             <button
+              className="media-close-btn"
               onClick={() => setSelectedImage(null)}
-              className="absolute top-2 right-2 text-white text-2xl font-bold hover:text-red-500"
             >
               &times;
             </button>

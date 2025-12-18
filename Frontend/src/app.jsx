@@ -10,7 +10,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Contact from "./pages/Contact";
 import Team from "./pages/Team";
 import Media from "./pages/Media";
-import WhoWeAre from "./pages/WhoWeAre";
+import UsPage from "./pages/UsPage";
 
 export default function App() {
   return (
@@ -21,7 +21,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/about/team" element={<Team />} />
-            <Route path="/about/who-we-are" element={<WhoWeAre />} />
+            <Route path="/about/us" element={<UsPage />} />
             <Route path="/about/media" element={<Media />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:id" element={<ServiceDetail />} />

@@ -1,0 +1,128 @@
+/* ===============================
+   ELIMO BRAND COLORS
+   =============================== */
+:root {
+  --elimo-primary: #1F033D;
+  --elimo-secondary: #AB01DE;
+  --elimo-accent: #0D8DE6;
+  --elimo-light: #E4E4E4;
+}
+
+/* ===============================
+   PAGE BACKGROUND
+   =============================== */
+.team-container {
+  min-height: 100vh;
+  color: var(--elimo-light);
+
+  /* Purple–Blue Diagonal Gradient Background */
+  background: linear-gradient(
+    135deg,
+    var(--elimo-primary) 0%,
+    #2c0650 40%,
+    var(--elimo-secondary) 80%,
+    var(--elimo-accent) 100%
+  );
+  animation: fadeIn 0.8s ease-in-out;
+  background-attachment: fixed;
+}
+
+/* ===============================
+   PAGE TITLE
+   =============================== */
+.team-title {
+  background: linear-gradient(90deg, var(--elimo-secondary), var(--elimo-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===============================
+   TEAM GRID
+   =============================== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-gap: 2.5rem;
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* ===============================
+   TEAM CARD
+   =============================== */
+.team-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  border: 1px solid rgba(171, 1, 222, 0.25);
+  opacity: 0;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(13, 141, 230, 0.35);
+}
+
+/* ===============================
+   IMAGE + GLOW
+   =============================== */
+.team-img-wrapper {
+  width: 90px;
+  height: 90px;
+  margin: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--elimo-secondary);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.team-img-wrapper:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--elimo-accent), 0 0 30px var(--elimo-secondary);
+}
+
+/* ===============================
+   SCROLL ANIMATION CLASSES
+   =============================== */
+.fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.fade-left {
+  animation: fadeLeft 0.8s ease forwards;
+}
+
+.fade-right {
+  animation: fadeRight 0.8s ease forwards;
+}
+
+/* Delay helpers */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.35s; }
+.delay-3 { animation-delay: 0.5s; }
+
+/* ===============================
+   KEYFRAMES
+   =============================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-25px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(25px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
